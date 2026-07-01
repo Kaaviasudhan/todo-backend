@@ -1,0 +1,45 @@
+# 1. Workflow Name
+name: Backend CI
+
+# 2. Trigger - This tells GitHub when to run the workflow.
+on:
+  # Whenever you push code.
+  push:
+    branches:
+      - main
+      - develop
+      - "feature/**"
+  # Whenever someone opens or updates a Pull Request.
+  pull_request:
+    branches:
+      - main
+      - develop
+
+# 3. Jobs - A workflow run is made up of one or more jobs that can run sequentially or in parallel.
+jobs:
+  test:
+    name: Lint, Format & Test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Check Formatting
+        run: npm run format:check
+
+      - name: Run Tests
+        run: npm test
