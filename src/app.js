@@ -3,6 +3,10 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 
+const todoRoutes = require("./routes/todo.routes");
+const errorHandler = require("./middleware/error.middleware");
+
+
 const app = express();
 
 // Middlewares
@@ -11,6 +15,7 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(errorHandler);
 
 // Health Check Route
 app.get("/health", (req, res) => {
@@ -19,6 +24,9 @@ app.get("/health", (req, res) => {
     message: "Todo Backend API is running 🚀",
   });
 });
+
+
+app.use("/api/v1/todos", todoRoutes);
 
 // 404 Handler
 app.use((req, res) => {
