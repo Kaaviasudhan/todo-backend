@@ -20,6 +20,12 @@ export default defineConfig([
       "no-console": "off",
       semi: ["error", "always"],
       quotes: ["error", "double"],
+      "no-unused-vars": [
+          "warn",
+          {
+            argsIgnorePattern: "^_",
+          },
+        ],
     },
   },
 
