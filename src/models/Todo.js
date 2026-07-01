@@ -4,7 +4,7 @@ const todoSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
+      required: [true, "Title is required"],
       trim: true,
       minlength: 3,
       maxlength: 100,
@@ -13,8 +13,8 @@ const todoSchema = new mongoose.Schema(
     description: {
       type: String,
       trim: true,
-      default: "",
       maxlength: 500,
+      default: "",
     },
 
     completed: {

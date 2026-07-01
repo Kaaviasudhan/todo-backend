@@ -1,7 +1,11 @@
 const Todo = require("../models/Todo");
 
 const createTodo = async (data) => {
-  return await Todo.create(data);
+  const todo = new Todo(data);
+
+  await todo.save();
+
+  return todo;
 };
 
 module.exports = {
