@@ -4,4 +4,3 @@ module.exports = {
   setupFilesAfterEnv: ["<rootDir>/tests/setup.js"],
   clearMocks: true,
 };
-

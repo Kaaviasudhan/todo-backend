@@ -20,11 +20,11 @@ export default defineConfig([
       semi: ["error", "always"],
       quotes: ["error", "double"],
       "no-unused-vars": [
-          "warn",
-          {
-            argsIgnorePattern: "^_",
-          },
-        ],
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+        },
+      ],
     },
   },
 

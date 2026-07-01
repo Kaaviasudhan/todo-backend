@@ -7,9 +7,7 @@ const createTodoSchema = Joi.object({
 
   completed: Joi.boolean().optional(),
 
-  priority: Joi.string()
-    .valid("Low", "Medium", "High")
-    .optional(),
+  priority: Joi.string().valid("Low", "Medium", "High").optional(),
 
   dueDate: Joi.date().optional(),
 });

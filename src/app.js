@@ -6,7 +6,6 @@ const morgan = require("morgan");
 const todoRoutes = require("./routes/todo.routes");
 const errorHandler = require("./middleware/error.middleware");
 
-
 const app = express();
 
 // Middlewares
@@ -24,7 +23,6 @@ app.get("/health", (req, res) => {
     message: "Todo Backend API is running 🚀",
   });
 });
-
 
 app.use("/api/v1/todos", todoRoutes);
 
