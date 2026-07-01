@@ -1,32 +1,15 @@
-const mongoose = require("mongoose");
+const asyncHandler = require("../utils/asyncHandler");
+const todoService = require("../services/todo.service");
 
-const connectDatabase = async (mongoURI = process.env.MONGODB_URI) => {
-  try {
-    const connection = await mongoose.connect(mongoURI);
+const createTodo = asyncHandler(async (req, res) => {
+  const todo = await todoService.createTodo(req.body);
 
-    console.log(
-      `✅ MongoDB Connected: ${connection.connection.host}:${connection.connection.port}`
-    );
-
-    return connection;
-  } catch (error) {
-    console.error("❌ MongoDB Connection Failed");
-    throw error;
-  }
-};
-
-const disconnectDatabase = async () => {
-  try {
-    await mongoose.disconnect();
-
-    console.log("📴 MongoDB Disconnected");
-  } catch (error) {
-    console.error("❌ MongoDB Disconnect Failed");
-    throw error;
-  }
-};
+  res.status(201).json({
+    success: true,
+    data: todo,
+  });
+});
 
 module.exports = {
-  connectDatabase,
-  disconnectDatabase,
+  createTodo,
 };
